@@ -39,7 +39,6 @@ namespace EContacts.Classes
             catch (Exception ex)
             {
                 
-                throw;
             }
             finally
             {
@@ -80,7 +79,6 @@ namespace EContacts.Classes
             catch (Exception ex)
             {
                 
-                throw;
             }
             finally
             {
@@ -120,6 +118,43 @@ namespace EContacts.Classes
                 if (rows > 0)
                     isSuccess = true;
 
+            }
+            catch (Exception ex)
+            {
+                
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return isSuccess;
+        }
+
+        //delete data from db 
+        public bool Delete(int id)
+        {
+            //setting a default return type value to false
+            bool isSuccess = false;
+
+            SqlConnection con = new SqlConnection(connectionString);
+            try
+            {
+                //sql to delete data
+                string sql = "delete from contacts where ContactId = @ContactId";
+
+                SqlCommand cmd = new SqlCommand(sql, con);
+
+                //create parameters to add value 
+                cmd.Parameters.AddWithValue("@ContactId", id);
+
+                con.Open();
+
+                int rows = cmd.ExecuteNonQuery();
+
+                //if the query runs successfully then value be greater than 0 else its value be 0
+                if (rows > 0)
+                    isSuccess = true;
             }
             catch (Exception)
             {
