@@ -47,5 +47,47 @@ namespace EContacts.Classes
             }
             return dt;
         }
+
+        //inserting data into db 
+        public bool Insert(Contact contact)
+        {
+            //setting a default return type value to false
+            bool isSuccess = false;
+
+            //step 1: connect db 
+            SqlConnection con = new SqlConnection(connectionString);
+            try
+            {
+                //step 2:  create sql query to insert data
+                string sql = "insert into Contact (FirstName, LastName, ContactNo. Address, Gender) Values (@FirstName, @LastName, @ContactNo. @Address, @Gender)";
+
+                SqlCommand cmd = new SqlCommand();
+
+                //create parameters to add data 
+                cmd.Parameters.AddWithValue("@FirstName", contact.FirstName);
+                cmd.Parameters.AddWithValue("@LastName", contact.LastName);
+                cmd.Parameters.AddWithValue("@ContactNo", contact.ContactNo);
+                cmd.Parameters.AddWithValue("@Address", contact.Address);
+                cmd.Parameters.AddWithValue("@Gender", contact.Gender);
+
+                con.Open();
+                int rows = cmd.ExecuteNonQuery();
+
+                //if the query runs successfully then value be greater than 0 else its value be 0
+                if (rows > 0)
+                    isSuccess = true;
+            }
+            catch (Exception ex)
+            {
+                
+                throw;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return isSuccess;
+        }
     }
 }
