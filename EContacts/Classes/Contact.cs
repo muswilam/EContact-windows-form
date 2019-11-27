@@ -29,7 +29,7 @@ namespace EContacts.Classes
             try
             {
                 //step 2: writing sql query
-                string sql = "select * from Contacts";
+                string sql = "select * from contacts";
                 SqlCommand cmd = new SqlCommand(sql, con);
 
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -59,7 +59,7 @@ namespace EContacts.Classes
             try
             {
                 //step 2:  create sql query to insert data
-                string sql = "insert into Contact (FirstName, LastName, ContactNo. Address, Gender) Values (@FirstName, @LastName, @ContactNo. @Address, @Gender)";
+                string sql = "insert into contacts (FirstName, LastName, ContactNo. Address, Gender) Values (@FirstName, @LastName, @ContactNo. @Address, @Gender)";
 
                 SqlCommand cmd = new SqlCommand();
 
@@ -78,6 +78,50 @@ namespace EContacts.Classes
                     isSuccess = true;
             }
             catch (Exception ex)
+            {
+                
+                throw;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return isSuccess;
+        }
+
+        //updating data in db 
+        public bool Update(Contact contact)
+        {
+            //setting a default return type value to false
+            bool isSuccess = false;
+
+            //step 1: connect db 
+            SqlConnection con = new SqlConnection(connectionString);
+            try
+            {
+                //sql to update data in db 
+                string sql = "update contacts set FirstName = @FirstName, LastName = @LastName, ContactNo = @ContactNo, Address = @Address, Gender = @Gender Where = ContactId = @ContactId";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                
+                //create parameters to add value
+                cmd.Parameters.AddWithValue("@ContactId", contact.ContactId); //id is so important to know which row's gonna updated
+                cmd.Parameters.AddWithValue("@FirstName", contact.FirstName);
+                cmd.Parameters.AddWithValue("@LastName", contact.LastName);
+                cmd.Parameters.AddWithValue("@ContactNo", contact.ContactNo);
+                cmd.Parameters.AddWithValue("@Address", contact.Address);
+                cmd.Parameters.AddWithValue("@Gender", contact.Gender);
+
+                con.Open();
+
+                int rows = cmd.ExecuteNonQuery();
+
+                //if the query runs successfully then value be greater than 0 else its value be 0
+                if (rows > 0)
+                    isSuccess = true;
+
+            }
+            catch (Exception)
             {
                 
                 throw;
