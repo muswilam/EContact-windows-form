@@ -30,8 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EContacts));
             this.EContactLogo = new System.Windows.Forms.PictureBox();
-            this.lblContactId = new System.Windows.Forms.Label();
-            this.txtContactId = new System.Windows.Forms.TextBox();
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.lblFirstName = new System.Windows.Forms.Label();
             this.txtLastName = new System.Windows.Forms.TextBox();
@@ -46,46 +44,28 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
+            this.dgvContactsList = new System.Windows.Forms.DataGridView();
+            this.lblSearch = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.EContactLogo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvContactsList)).BeginInit();
             this.SuspendLayout();
             // 
             // EContactLogo
             // 
+            this.EContactLogo.BackColor = System.Drawing.Color.Transparent;
             this.EContactLogo.Image = ((System.Drawing.Image)(resources.GetObject("EContactLogo.Image")));
             this.EContactLogo.Location = new System.Drawing.Point(342, 12);
             this.EContactLogo.Name = "EContactLogo";
-            this.EContactLogo.Size = new System.Drawing.Size(278, 69);
+            this.EContactLogo.Size = new System.Drawing.Size(315, 61);
             this.EContactLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.EContactLogo.TabIndex = 0;
             this.EContactLogo.TabStop = false;
             // 
-            // lblContactId
-            // 
-            this.lblContactId.AutoSize = true;
-            this.lblContactId.BackColor = System.Drawing.Color.Transparent;
-            this.lblContactId.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.lblContactId.Location = new System.Drawing.Point(39, 110);
-            this.lblContactId.Name = "lblContactId";
-            this.lblContactId.Size = new System.Drawing.Size(84, 19);
-            this.lblContactId.TabIndex = 1;
-            this.lblContactId.Text = "Contact ID";
-            // 
-            // txtContactId
-            // 
-            this.txtContactId.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtContactId.Location = new System.Drawing.Point(197, 107);
-            this.txtContactId.Name = "txtContactId";
-            this.txtContactId.Size = new System.Drawing.Size(187, 27);
-            this.txtContactId.TabIndex = 2;
-            // 
             // txtFirstName
             // 
             this.txtFirstName.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtFirstName.Location = new System.Drawing.Point(197, 157);
+            this.txtFirstName.Location = new System.Drawing.Point(195, 107);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(187, 27);
             this.txtFirstName.TabIndex = 4;
@@ -95,7 +75,7 @@
             this.lblFirstName.AutoSize = true;
             this.lblFirstName.BackColor = System.Drawing.Color.Transparent;
             this.lblFirstName.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.lblFirstName.Location = new System.Drawing.Point(39, 160);
+            this.lblFirstName.Location = new System.Drawing.Point(37, 110);
             this.lblFirstName.Name = "lblFirstName";
             this.lblFirstName.Size = new System.Drawing.Size(85, 19);
             this.lblFirstName.TabIndex = 3;
@@ -104,7 +84,7 @@
             // txtLastName
             // 
             this.txtLastName.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtLastName.Location = new System.Drawing.Point(197, 207);
+            this.txtLastName.Location = new System.Drawing.Point(195, 157);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(187, 27);
             this.txtLastName.TabIndex = 6;
@@ -114,7 +94,7 @@
             this.lblLastName.AutoSize = true;
             this.lblLastName.BackColor = System.Drawing.Color.Transparent;
             this.lblLastName.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.lblLastName.Location = new System.Drawing.Point(39, 210);
+            this.lblLastName.Location = new System.Drawing.Point(37, 160);
             this.lblLastName.Name = "lblLastName";
             this.lblLastName.Size = new System.Drawing.Size(83, 19);
             this.lblLastName.TabIndex = 5;
@@ -123,7 +103,7 @@
             // txtContactNo
             // 
             this.txtContactNo.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtContactNo.Location = new System.Drawing.Point(197, 255);
+            this.txtContactNo.Location = new System.Drawing.Point(195, 205);
             this.txtContactNo.Name = "txtContactNo";
             this.txtContactNo.Size = new System.Drawing.Size(187, 27);
             this.txtContactNo.TabIndex = 8;
@@ -133,7 +113,7 @@
             this.lblContactNo.AutoSize = true;
             this.lblContactNo.BackColor = System.Drawing.Color.Transparent;
             this.lblContactNo.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.lblContactNo.Location = new System.Drawing.Point(39, 258);
+            this.lblContactNo.Location = new System.Drawing.Point(37, 208);
             this.lblContactNo.Name = "lblContactNo";
             this.lblContactNo.Size = new System.Drawing.Size(124, 19);
             this.lblContactNo.TabIndex = 7;
@@ -142,7 +122,7 @@
             // txtAddress
             // 
             this.txtAddress.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtAddress.Location = new System.Drawing.Point(197, 305);
+            this.txtAddress.Location = new System.Drawing.Point(195, 255);
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(187, 99);
@@ -153,7 +133,7 @@
             this.lblAddress.AutoSize = true;
             this.lblAddress.BackColor = System.Drawing.Color.Transparent;
             this.lblAddress.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.lblAddress.Location = new System.Drawing.Point(39, 308);
+            this.lblAddress.Location = new System.Drawing.Point(37, 258);
             this.lblAddress.Name = "lblAddress";
             this.lblAddress.Size = new System.Drawing.Size(66, 19);
             this.lblAddress.TabIndex = 9;
@@ -166,7 +146,7 @@
             this.cmbGender.Items.AddRange(new object[] {
             "Male",
             "Female"});
-            this.cmbGender.Location = new System.Drawing.Point(197, 424);
+            this.cmbGender.Location = new System.Drawing.Point(195, 374);
             this.cmbGender.Name = "cmbGender";
             this.cmbGender.Size = new System.Drawing.Size(187, 27);
             this.cmbGender.TabIndex = 11;
@@ -176,7 +156,7 @@
             this.lblGender.AutoSize = true;
             this.lblGender.BackColor = System.Drawing.Color.Transparent;
             this.lblGender.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.lblGender.Location = new System.Drawing.Point(39, 422);
+            this.lblGender.Location = new System.Drawing.Point(37, 372);
             this.lblGender.Name = "lblGender";
             this.lblGender.Size = new System.Drawing.Size(60, 19);
             this.lblGender.TabIndex = 12;
@@ -187,19 +167,20 @@
             this.btnAdd.BackColor = System.Drawing.Color.ForestGreen;
             this.btnAdd.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(244, 481);
+            this.btnAdd.Location = new System.Drawing.Point(228, 437);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(110, 38);
             this.btnAdd.TabIndex = 13;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnUpdate
             // 
             this.btnUpdate.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnUpdate.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Location = new System.Drawing.Point(383, 481);
+            this.btnUpdate.Location = new System.Drawing.Point(367, 437);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(110, 38);
             this.btnUpdate.TabIndex = 14;
@@ -211,7 +192,7 @@
             this.btnDelete.BackColor = System.Drawing.Color.Crimson;
             this.btnDelete.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(524, 481);
+            this.btnDelete.Location = new System.Drawing.Point(508, 437);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(110, 38);
             this.btnDelete.TabIndex = 15;
@@ -223,32 +204,31 @@
             this.btnClear.BackColor = System.Drawing.Color.Orange;
             this.btnClear.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnClear.ForeColor = System.Drawing.Color.White;
-            this.btnClear.Location = new System.Drawing.Point(662, 481);
+            this.btnClear.Location = new System.Drawing.Point(646, 437);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(110, 38);
             this.btnClear.TabIndex = 16;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = false;
             // 
-            // dataGridView1
+            // dgvContactsList
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(424, 157);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(490, 294);
-            this.dataGridView1.TabIndex = 17;
+            this.dgvContactsList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvContactsList.Location = new System.Drawing.Point(482, 160);
+            this.dgvContactsList.Name = "dgvContactsList";
+            this.dgvContactsList.Size = new System.Drawing.Size(432, 244);
+            this.dgvContactsList.TabIndex = 17;
             // 
-            // label1
+            // lblSearch
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label1.Location = new System.Drawing.Point(420, 107);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 19);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "Search";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.lblSearch.AutoSize = true;
+            this.lblSearch.BackColor = System.Drawing.Color.Transparent;
+            this.lblSearch.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.lblSearch.Location = new System.Drawing.Point(420, 107);
+            this.lblSearch.Name = "lblSearch";
+            this.lblSearch.Size = new System.Drawing.Size(56, 19);
+            this.lblSearch.TabIndex = 18;
+            this.lblSearch.Text = "Search";
             // 
             // txtSearch
             // 
@@ -262,10 +242,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(961, 530);
+            this.ClientSize = new System.Drawing.Size(957, 491);
             this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.lblSearch);
+            this.Controls.Add(this.dgvContactsList);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
@@ -280,15 +260,14 @@
             this.Controls.Add(this.lblLastName);
             this.Controls.Add(this.txtFirstName);
             this.Controls.Add(this.lblFirstName);
-            this.Controls.Add(this.txtContactId);
-            this.Controls.Add(this.lblContactId);
             this.Controls.Add(this.EContactLogo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "EContacts";
             this.ShowIcon = false;
             this.Text = "E-Contact";
+            this.Load += new System.EventHandler(this.EContacts_Load);
             ((System.ComponentModel.ISupportInitialize)(this.EContactLogo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvContactsList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -297,8 +276,6 @@
         #endregion
 
         private System.Windows.Forms.PictureBox EContactLogo;
-        private System.Windows.Forms.Label lblContactId;
-        private System.Windows.Forms.TextBox txtContactId;
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.Label lblFirstName;
         private System.Windows.Forms.TextBox txtLastName;
@@ -313,8 +290,8 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnClear;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView dgvContactsList;
+        private System.Windows.Forms.Label lblSearch;
         private System.Windows.Forms.TextBox txtSearch;
     }
 }
