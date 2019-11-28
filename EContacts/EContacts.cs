@@ -42,11 +42,12 @@ namespace EContacts
             cmbGender.Text = "";
         }
 
+        #region Add Data
         private void btnAdd_Click(object sender, EventArgs e)
         {
             //get the value from the input fields
             contact.FirstName = txtFirstName.Text;
-            contact.LastName = txtLastName.Text;
+            contact.LastName = " " + txtLastName.Text;
             contact.ContactNo = txtContactNo.Text;
             contact.Address = txtAddress.Text;
             contact.Gender = cmbGender.SelectedItem.ToString();
@@ -56,13 +57,67 @@ namespace EContacts
 
             if (sucess)
             {
-                MessageBox.Show(contact.LastName + " successfully inserted.");
+                MessageBox.Show("Added successfully.");
                 Clear();
             }
             else
-                MessageBox.Show("Failed!, try again please.");
+                MessageBox.Show("Failed!, something went wrong.");
 
             ListData();
         }
+        #endregion
+
+        #region Update data
+        //get data from dataGridView and load it to input fields 
+        private void dgvContactsList_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            //identify the row on which mouse is clicked
+            int rowIndex = e.RowIndex;
+            var name = dgvContactsList.Rows[rowIndex].Cells[1].Value.ToString();
+            var space = name.IndexOf(" ");
+            string firstName = "";
+            string lastName = "";
+            if (space > 0)
+            {
+                firstName = name.Substring(0, space);
+                lastName = name.Substring(space + 1);
+            }
+            else
+            {
+                firstName = name;
+            }
+
+            txtContactId.Text = dgvContactsList.Rows[rowIndex].Cells[0].Value.ToString();
+            txtFirstName.Text = firstName;
+            txtLastName.Text = lastName != null ? lastName : "";
+            txtContactNo.Text = dgvContactsList.Rows[rowIndex].Cells[2].Value.ToString();
+            txtAddress.Text = dgvContactsList.Rows[rowIndex].Cells[3].Value.ToString();
+            cmbGender.Text = dgvContactsList.Rows[rowIndex].Cells[4].Value.ToString();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            //get data from input fields
+            contact.ContactId = int.Parse(txtContactId.Text);
+            contact.FirstName = txtFirstName.Text;
+            contact.LastName = " " + txtLastName.Text;
+            contact.ContactNo = txtContactNo.Text;
+            contact.Address = txtAddress.Text;
+            contact.Gender = cmbGender.Text;
+
+            //update data in db 
+            bool success = contact.Update(contact);
+
+            if (success)
+            {
+                MessageBox.Show("Updated Successfully");
+                ListData();
+                Clear();
+            }
+            else
+                MessageBox.Show("Failed!, something went wrong.");
+        }
+        #endregion
+        
     }
 }

@@ -45,8 +45,10 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.dgvContactsList = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblSearch = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
+            this.txtContactId = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.EContactLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvContactsList)).BeginInit();
             this.SuspendLayout();
@@ -186,6 +188,7 @@
             this.btnUpdate.TabIndex = 14;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnDelete
             // 
@@ -213,11 +216,25 @@
             // 
             // dgvContactsList
             // 
+            this.dgvContactsList.AllowUserToAddRows = false;
+            this.dgvContactsList.AllowUserToDeleteRows = false;
             this.dgvContactsList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvContactsList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id});
             this.dgvContactsList.Location = new System.Drawing.Point(482, 160);
             this.dgvContactsList.Name = "dgvContactsList";
+            this.dgvContactsList.ReadOnly = true;
             this.dgvContactsList.Size = new System.Drawing.Size(432, 244);
             this.dgvContactsList.TabIndex = 17;
+            this.dgvContactsList.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvContactsList_RowHeaderMouseClick);
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
             // 
             // lblSearch
             // 
@@ -238,11 +255,20 @@
             this.txtSearch.Size = new System.Drawing.Size(432, 27);
             this.txtSearch.TabIndex = 19;
             // 
+            // txtContactId
+            // 
+            this.txtContactId.Location = new System.Drawing.Point(195, 81);
+            this.txtContactId.Name = "txtContactId";
+            this.txtContactId.Size = new System.Drawing.Size(100, 20);
+            this.txtContactId.TabIndex = 20;
+            this.txtContactId.Visible = false;
+            // 
             // EContacts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(957, 491);
+            this.Controls.Add(this.txtContactId);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.lblSearch);
             this.Controls.Add(this.dgvContactsList);
@@ -293,6 +319,8 @@
         private System.Windows.Forms.DataGridView dgvContactsList;
         private System.Windows.Forms.Label lblSearch;
         private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.TextBox txtContactId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
     }
 }
 

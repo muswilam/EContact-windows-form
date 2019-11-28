@@ -29,7 +29,7 @@ namespace EContacts.Classes
             try
             {
                 //step 2: writing sql query
-                string sql = "select (FirstName + LastName) as Name, ContactNo as Number, Address, Gender from contacts";
+                string sql = "select ContactId as Id, (FirstName + LastName) as Name, ContactNo as Number, Address, Gender from contacts";
                 SqlCommand cmd = new SqlCommand(sql, con);
 
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -99,7 +99,7 @@ namespace EContacts.Classes
             try
             {
                 //sql to update data in db 
-                string sql = "update contacts set FirstName = @FirstName, LastName = @LastName, ContactNo = @ContactNo, Address = @Address, Gender = @Gender Where = ContactId = @ContactId";
+                string sql = "update contacts set FirstName = @FirstName, LastName = @LastName, ContactNo = @ContactNo, Address = @Address, Gender = @Gender Where ContactId = @ContactId";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 
                 //create parameters to add value
