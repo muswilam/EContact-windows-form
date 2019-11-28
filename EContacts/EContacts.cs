@@ -35,6 +35,7 @@ namespace EContacts
         //empty all fields 
         private void Clear()
         {
+            txtContactId.Text = "";
             txtFirstName.Text = "";
             txtLastName.Text = "";
             txtContactNo.Text = "";
@@ -57,11 +58,11 @@ namespace EContacts
 
             if (sucess)
             {
-                MessageBox.Show("Added successfully.");
+                MessageBox.Show("Added successfully.","Success");
                 Clear();
             }
             else
-                MessageBox.Show("Failed!, something went wrong.");
+                MessageBox.Show("Something went wrong.", "Failed!");
 
             ListData();
         }
@@ -97,27 +98,66 @@ namespace EContacts
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            //get data from input fields
-            contact.ContactId = int.Parse(txtContactId.Text);
-            contact.FirstName = txtFirstName.Text;
-            contact.LastName = " " + txtLastName.Text;
-            contact.ContactNo = txtContactNo.Text;
-            contact.Address = txtAddress.Text;
-            contact.Gender = cmbGender.Text;
-
-            //update data in db 
-            bool success = contact.Update(contact);
-
-            if (success)
+            if (!string.IsNullOrEmpty(txtContactId.Text))
             {
-                MessageBox.Show("Updated Successfully");
-                ListData();
-                Clear();
+                //get data from input fields
+                contact.ContactId = int.Parse(txtContactId.Text);
+                contact.FirstName = txtFirstName.Text;
+                contact.LastName = " " + txtLastName.Text;
+                contact.ContactNo = txtContactNo.Text;
+                contact.Address = txtAddress.Text;
+                contact.Gender = cmbGender.Text;
+
+                //update data in db 
+                bool success = contact.Update(contact);
+
+                if (success)
+                {
+                    MessageBox.Show("Updated Successfully","Success");
+                    ListData();
+                    Clear();
+                }
+                else
+                    MessageBox.Show("Something went wrong.", "Failed!");
             }
             else
-                MessageBox.Show("Failed!, something went wrong.");
+                MessageBox.Show("You have to select a record for updating.", "Failed!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         #endregion
-        
+
+        #region Delete data & Clear inputs
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtContactId.Text))
+            {
+                var result = MessageBox.Show("Are you sure, delete this record?", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                if (result == DialogResult.OK)
+                {
+                    //get row id from dataGridView 
+                    int id = int.Parse(txtContactId.Text);
+
+                    bool success = contact.Delete(id);
+
+                    if (success)
+                    {
+                        MessageBox.Show("Deleted successfully.", "Success");
+                        ListData();
+                        Clear();
+                    }
+                    else
+                        MessageBox.Show("Something went wrong.", "Failed!");
+                }
+            }
+            else
+                MessageBox.Show("You have to select a record for deleting.", "Failed!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            Clear();
+        }
+        #endregion
+
     }
 }
